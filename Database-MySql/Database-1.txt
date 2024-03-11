@@ -1,0 +1,1001 @@
+
+Setting environment for using XAMPP for Windows.
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python11am         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.011 sec)
+
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| student                   |
++---------------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- create table table_name(col1 dtype constraints, col2 dtype.....)
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sid     | int(10)      | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| address | varchar(200) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.025 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student;
++------+-------+---------+
+| sid  | name  | address |
++------+-------+---------+
+|  101 | Harsh | jaipur  |
+|  102 | ram   | jaipur  |
+|  103 | aman  | jaipur  |
+|  104 | rahul | NULL    |
++------+-------+---------+
+4 rows in set (0.010 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> insert into student values(105, 'khushal', 'jaipur');
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
++------+---------+---------+
+5 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> insert into student values(105, 'khushal');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [datascience_feb]> insert into student(sid, name) values(105, 'khushal');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- where
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- select * from table where condt.
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student where sid > 103;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+3 rows in set (0.004 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select name from student;
++---------+
+| name    |
++---------+
+| Harsh   |
+| ram     |
+| aman    |
+| rahul   |
+| khushal |
+| khushal |
++---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sid, name from student;
++------+---------+
+| sid  | name    |
++------+---------+
+|  101 | Harsh   |
+|  102 | ram     |
+|  103 | aman    |
+|  104 | rahul   |
+|  105 | khushal |
+|  105 | khushal |
++------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select address,name from student;
++---------+---------+
+| address | name    |
++---------+---------+
+| jaipur  | Harsh   |
+| jaipur  | ram     |
+| jaipur  | aman    |
+| NULL    | rahul   |
+| jaipur  | khushal |
+| NULL    | khushal |
++---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student where sid > 103 and address='jaipur';
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  105 | khushal | jaipur  |
++------+---------+---------+
+1 row in set (0.005 sec)
+
+MariaDB [datascience_feb]> select * from student where sid > 103 or address='jaipur';
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student where sid < 105 and sid != 102;
++------+-------+---------+
+| sid  | name  | address |
++------+-------+---------+
+|  101 | Harsh | jaipur  |
+|  103 | aman  | jaipur  |
+|  104 | rahul | NULL    |
++------+-------+---------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student where sid in (101, 103, 104);
++------+-------+---------+
+| sid  | name  | address |
++------+-------+---------+
+|  101 | Harsh | jaipur  |
+|  103 | aman  | jaipur  |
+|  104 | rahul | NULL    |
++------+-------+---------+
+3 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from student where sid = 101 or sid=103 or sid-104;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+5 rows in set (0.003 sec)
+
+MariaDB [datascience_feb]> select * from student where sid = 101 or sid=103 or sid=104;
++------+-------+---------+
+| sid  | name  | address |
++------+-------+---------+
+|  101 | Harsh | jaipur  |
+|  103 | aman  | jaipur  |
+|  104 | rahul | NULL    |
++------+-------+---------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student where name != 'aman';
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+5 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> create table fees(fid int(10), fees double, discount double, paid double);
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [datascience_feb]> desc fees;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| fid      | int(10) | YES  |     | NULL    |       |
+| fees     | double  | YES  |     | NULL    |       |
+| discount | double  | YES  |     | NULL    |       |
+| paid     | double  | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+4 rows in set (0.018 sec)
+
+MariaDB [datascience_feb]> insert into fees values(101, 20000, 1000, 7000), (102, 25000, 2000, 9000);
+Query OK, 2 rows affected (0.004 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> insert into fees values(103, 25000, 1000, 10000), (104, 30000, 2000, 15000);
+Query OK, 2 rows affected (0.005 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
++------+-------+----------+-------+
+4 rows in set (0.003 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> insert into fees values(105, 30000, 1000, 13000), (106, 10000, 0, 4000);
+Query OK, 2 rows affected (0.003 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
+|  106 | 10000 |        0 |  4000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> -- agg functions
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- min()
+MariaDB [datascience_feb]> --max()
+MariaDB [datascience_feb]> -- count()
+MariaDB [datascience_feb]> -- sum()
+MariaDB [datascience_feb]> -- avg()
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select avg(fees) from fees;
++--------------------+
+| avg(fees)          |
++--------------------+
+| 23333.333333333332 |
++--------------------+
+1 row in set (0.014 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select max(fees) from fees;
++-----------+
+| max(fees) |
++-----------+
+|     30000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select min(fees) from fees;
++-----------+
+| min(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sum(fees) from fees;
++-----------+
+| sum(fees) |
++-----------+
+|    140000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select count(names) from student;
+ERROR 1054 (42S22): Unknown column 'names' in 'field list'
+MariaDB [datascience_feb]> select count(name) from student;
++-------------+
+| count(name) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select count(address) from student;
++----------------+
+| count(address) |
++----------------+
+|              4 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select count(*) from student;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
+|  106 | 10000 |        0 |  4000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sum(fees) from fees;
++-----------+
+| sum(fees) |
++-----------+
+|    140000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sum(paid) from fees;
++-----------+
+| sum(paid) |
++-----------+
+|     58000 |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sum(fees) - sum(paid) from fees;
++-----------------------+
+| sum(fees) - sum(paid) |
++-----------------------+
+|                 82000 |
++-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sum(fees) - sum(paid) as reamining_fees from fees;
++----------------+
+| reamining_fees |
++----------------+
+|          82000 |
++----------------+
+1 row in set (0.002 sec)
+
+MariaDB [datascience_feb]> select sum(fees) - sum(paid) as remaining_fees from fees;
++----------------+
+| remaining_fees |
++----------------+
+|          82000 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- update
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  105 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
+|  106 | 10000 |        0 |  4000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> -- update table set col=value condt
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> update student set sid=106 where sid=105 and address is null;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
+|  106 | 10000 |        0 |  4000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | NULL    |
+|  105 | khushal | jaipur  |
+|  106 | khushal | NULL    |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> update student set address='alwar' where address is null;
+Query OK, 2 rows affected (0.003 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- order by
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
++------+---------+---------+
+6 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from student order by name;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  103 | aman    | jaipur  |
+|  101 | Harsh   | jaipur  |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  104 | rahul   | alwar   |
+|  102 | ram     | jaipur  |
++------+---------+---------+
+6 rows in set (0.003 sec)
+
+MariaDB [datascience_feb]> select * from student order by name desc;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  102 | ram     | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  101 | Harsh   | jaipur  |
+|  103 | aman    | jaipur  |
++------+---------+---------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
+|  106 | 10000 |        0 |  4000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees order by fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  106 | 10000 |        0 |  4000 |
+|  101 | 20000 |     1000 |  7000 |
+|  102 | 25000 |     2000 |  9000 |
+|  103 | 25000 |     1000 | 10000 |
+|  104 | 30000 |     2000 | 15000 |
+|  105 | 30000 |     1000 | 13000 |
++------+-------+----------+-------+
+6 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from fees order by fees, discount;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|  106 | 10000 |        0 |  4000 |
+|  101 | 20000 |     1000 |  7000 |
+|  103 | 25000 |     1000 | 10000 |
+|  102 | 25000 |     2000 |  9000 |
+|  105 | 30000 |     1000 | 13000 |
+|  104 | 30000 |     2000 | 15000 |
++------+-------+----------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- drop
+MariaDB [datascience_feb]> -- delete
+MariaDB [datascience_feb]> -- truncate
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- drop
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| fees                      |
+| student                   |
++---------------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> dshow databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dshow databases' at line 1
+MariaDB [datascience_feb]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python11am         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> use python11am;
+Database changed
+MariaDB [python11am]> show tables;
++----------------------+
+| Tables_in_python11am |
++----------------------+
+| address              |
+| contact              |
+| data                 |
+| fees                 |
+| filter_data          |
+| filter_student       |
+| new                  |
+| new1                 |
+| student              |
+| students             |
+| temp                 |
+| users                |
++----------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [python11am]> select * from address;
++-----+------+--------+-------+
+| aid | sid  | city   | state |
++-----+------+--------+-------+
+| 101 |    1 | jaipur | raj   |
+| 102 |    2 | jaipur | raj   |
++-----+------+--------+-------+
+2 rows in set (0.007 sec)
+
+MariaDB [python11am]> desc address;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| aid   | int(10)      | NO   | PRI | NULL    |       |
+| sid   | int(10)      | YES  | MUL | NULL    |       |
+| city  | varchar(100) | YES  |     | NULL    |       |
+| state | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.036 sec)
+
+MariaDB [python11am]> desc data;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| eid       | int(10)      | NO   | PRI | NULL    |       |
+| e_name    | varchar(100) | YES  |     | NULL    |       |
+| e_address | varchar(100) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+3 rows in set (0.029 sec)
+
+MariaDB [python11am]> drop table data;
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [python11am]> show tables;
++----------------------+
+| Tables_in_python11am |
++----------------------+
+| address              |
+| contact              |
+| fees                 |
+| filter_data          |
+| filter_student       |
+| new                  |
+| new1                 |
+| student              |
+| students             |
+| temp                 |
+| users                |
++----------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [python11am]> -- drop database database_name;
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]> -- delete
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]> select * from students;
+Empty set (0.008 sec)
+
+MariaDB [python11am]> select * from student;
++-----+-----------+--------------+
+| sid | name      | course       |
++-----+-----------+--------------+
+|   1 | aman      | python       |
+|   2 | ram       | data science |
+|   3 | simran    | python       |
+|   4 | sachin    | data science |
+|   5 | rajat     | python       |
+|   6 | ravi      | data science |
+|   7 | yadvendra | python       |
+|  11 | deepak    | data science |
++-----+-----------+--------------+
+8 rows in set (0.006 sec)
+
+MariaDB [python11am]> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| sid    | int(10)      | NO   | PRI | NULL    |       |
+| name   | char(100)    | YES  |     | NULL    |       |
+| course | varchar(100) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.017 sec)
+
+MariaDB [python11am]> delete from student where sid in (2,4,6);
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`python11am`.`address`, CONSTRAINT`address_ibfk_1` FOREIGN KEY (`sid`) REFERENCES `student` (`sid`))
+MariaDB [python11am]> select * from users;
++--------------------+----------------------------+------------+----------+
+| name               | email                      | phone      | password |
++--------------------+----------------------------+------------+----------+
+| Deepratan Kushwaha | deepratankushwah@gmail.com | 9887410890 | Hesoy@M1 |
++--------------------+----------------------------+------------+----------+
+1 row in set (0.007 sec)
+
+MariaDB [python11am]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|    1 | 25000 |        0 | 10000 |
+|    2 | 30000 |     2000 | 15000 |
+|    3 | 15000 |     1000 |  6000 |
+|    4 | 10000 |        0 |  4000 |
+|    5 | 15000 |     2000 |  6000 |
+|    6 | 15000 |     1000 |  7000 |
++------+-------+----------+-------+
+6 rows in set (0.007 sec)
+
+MariaDB [python11am]> desc fees;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| fid      | int(10) | YES  |     | NULL    |       |
+| fees     | double  | YES  |     | NULL    |       |
+| discount | double  | YES  |     | NULL    |       |
+| paid     | double  | YES  |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+4 rows in set (0.026 sec)
+
+MariaDB [python11am]> delete from fees where fid in (2,4,6);
+Query OK, 3 rows affected (0.004 sec)
+
+MariaDB [python11am]> select * from fees;
++------+-------+----------+-------+
+| fid  | fees  | discount | paid  |
++------+-------+----------+-------+
+|    1 | 25000 |        0 | 10000 |
+|    3 | 15000 |     1000 |  6000 |
+|    5 | 15000 |     2000 |  6000 |
++------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [python11am]> delete from fees;
+Query OK, 3 rows affected (0.003 sec)
+
+MariaDB [python11am]> select * from fees;
+Empty set (0.001 sec)
+
+MariaDB [python11am]> drop table fees;
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [python11am]> show tables;
++----------------------+
+| Tables_in_python11am |
++----------------------+
+| address              |
+| contact              |
+| filter_data          |
+| filter_student       |
+| new                  |
+| new1                 |
+| student              |
+| students             |
+| temp                 |
+| users                |
++----------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [python11am]> select * from contact;
++--------------------+----------------------------+------------+---------+
+| name               | email                      | phoneno    | message |
++--------------------+----------------------------+------------+---------+
+| Deepratan Kushwaha | deepratankushwah@gmail.com | 9887410890 | hello   |
+| sachin             | sachin@grrassolutions.org  |  966325482 | hey     |
++--------------------+----------------------------+------------+---------+
+2 rows in set (0.007 sec)
+
+MariaDB [python11am]> -- truncate
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]> select * from contact;
++--------------------+----------------------------+------------+---------+
+| name               | email                      | phoneno    | message |
++--------------------+----------------------------+------------+---------+
+| Deepratan Kushwaha | deepratankushwah@gmail.com | 9887410890 | hello   |
+| sachin             | sachin@grrassolutions.org  |  966325482 | hey     |
++--------------------+----------------------------+------------+---------+
+2 rows in set (0.001 sec)
+
+MariaDB [python11am]> truncate contact;
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [python11am]> select * from contact;
+Empty set (0.001 sec)
+
+MariaDB [python11am]> desc contact;
++---------+---------------+------+-----+---------+-------+
+| Field   | Type          | Null | Key | Default | Extra |
++---------+---------------+------+-----+---------+-------+
+| name    | varchar(100)  | YES  |     | NULL    |       |
+| email   | varchar(100)  | NO   | PRI | NULL    |       |
+| phoneno | double        | YES  |     | NULL    |       |
+| message | varchar(1000) | YES  |     | NULL    |       |
++---------+---------------+------+-----+---------+-------+
+4 rows in set (0.026 sec)
+
+MariaDB [python11am]> drop table contact;
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [python11am]> show tables;
++----------------------+
+| Tables_in_python11am |
++----------------------+
+| address              |
+| filter_data          |
+| filter_student       |
+| new                  |
+| new1                 |
+| student              |
+| students             |
+| temp                 |
+| users                |
++----------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]>
+MariaDB [python11am]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python11am         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [python11am]> drop database python11am;
+Query OK, 9 rows affected (0.097 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]>
