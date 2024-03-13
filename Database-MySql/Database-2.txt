@@ -1,0 +1,645 @@
+
+Setting environment for using XAMPP for Windows.
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| grras_official     |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.003 sec)
+
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| fees                      |
+| student                   |
++---------------------------+
+3 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> -- drop
+MariaDB [datascience_feb]> -- delete
+MariaDB [datascience_feb]> -- truncate
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- primary key
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| fees                      |
+| student                   |
++---------------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
++------+---------+---------+
+6 rows in set (0.010 sec)
+
+MariaDB [datascience_feb]> select * from student where name='khushal';
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
++------+---------+---------+
+2 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> insert into student values(106, 'rajat', 'ajmer');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [datascience_feb]> select * from student where name='khushal';
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
++------+---------+---------+
+2 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  106 | rajat   | ajmer   |
++------+---------+---------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| sid     | int(10)      | YES  |     | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| address | varchar(200) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.042 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| fees                      |
+| student                   |
++---------------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> create table employee(e_id int(10) primary key, e_name varchar(100), salary double, city varchar(100), state varchar(100));
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| student                   |
++---------------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> desc employee;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| e_id   | int(10)      | NO   | PRI | NULL    |       |
+| e_name | varchar(100) | YES  |     | NULL    |       |
+| salary | double       | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| state  | varchar(100) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.016 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> insert into employee values(101, 'aman', 30000, 'jaipur', 'raj');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> insert into employee values(101, 'aman', 30000, 'jaipur', 'raj');
+ERROR 1062 (23000): Duplicate entry '101' for key 'PRIMARY'
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [datascience_feb]> insert into employee values(102, 'ram', 25000, 'jaipur', 'raj'), (103, 'rohan', 35000, 'alwar', 'raj'), (104, 'sachin', 15000, 'jaipur', 'raj');
+Query OK, 3 rows affected (0.005 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> desc employee;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| e_id   | int(10)      | NO   | PRI | NULL    |       |
+| e_name | varchar(100) | YES  |     | NULL    |       |
+| salary | double       | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | NULL    |       |
+| state  | varchar(100) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.021 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| student                   |
++---------------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  106 | rajat   | ajmer   |
++------+---------+---------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> create table new_student as select * from student;
+Query OK, 7 rows affected (0.019 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| new_student               |
+| student                   |
++---------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from new_student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  106 | rajat   | ajmer   |
++------+---------+---------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> create table filter_student as select * from student where address='alwar';
+Query OK, 2 rows affected (0.022 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| new_student               |
+| student                   |
++---------------------------+
+6 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from filter_student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  104 | rahul   | alwar   |
+|  106 | khushal | alwar   |
++------+---------+---------+
+2 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- view
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| new_student               |
+| student                   |
++---------------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> -- view
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from employee where city='jaipur';
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> create view jaipur_emp as select * from employee where city='jaipur';
+Query OK, 0 rows affected (0.024 sec)
+
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| jaipur_emp                |
+| new_student               |
+| student                   |
++---------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from jaipur_emp;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+3 rows in set (0.015 sec)
+
+MariaDB [datascience_feb]> select * from jaipur_emp;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> insert into employee values(105, 'sachin', 60000, 'ajmer', 'raj');
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
+|  105 | sachin |  60000 | ajmer  | raj   |
++------+--------+--------+--------+-------+
+5 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from jaipur_emp;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+3 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> insert into employee values(106, 'anil', 60000, 'jaipur', 'raj');
+Query OK, 1 row affected (0.012 sec)
+
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
+|  105 | sachin |  60000 | ajmer  | raj   |
+|  106 | anil   |  60000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from jaipur_emp;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
+|  106 | anil   |  60000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+4 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| jaipur_emp                |
+| new_student               |
+| student                   |
++---------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from employee;
++------+--------+--------+--------+-------+
+| e_id | e_name | salary | city   | state |
++------+--------+--------+--------+-------+
+|  101 | aman   |  30000 | jaipur | raj   |
+|  102 | ram    |  25000 | jaipur | raj   |
+|  103 | rohan  |  35000 | alwar  | raj   |
+|  104 | sachin |  15000 | jaipur | raj   |
+|  105 | sachin |  60000 | ajmer  | raj   |
+|  106 | anil   |  60000 | jaipur | raj   |
++------+--------+--------+--------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select distinct(city) from employee;
++--------+
+| city   |
++--------+
+| jaipur |
+| alwar  |
+| ajmer  |
++--------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- alter
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+
+| sid  | name    | address |
++------+---------+---------+
+|  101 | Harsh   | jaipur  |
+|  102 | ram     | jaipur  |
+|  103 | aman    | jaipur  |
+|  104 | rahul   | alwar   |
+|  105 | khushal | jaipur  |
+|  106 | khushal | alwar   |
+|  106 | rajat   | ajmer   |
++------+---------+---------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> alter table student add column age int(5);
+Query OK, 0 rows affected (0.023 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+------+
+| sid  | name    | address | age  |
++------+---------+---------+------+
+|  101 | Harsh   | jaipur  | NULL |
+|  102 | ram     | jaipur  | NULL |
+|  103 | aman    | jaipur  | NULL |
+|  104 | rahul   | alwar   | NULL |
+|  105 | khushal | jaipur  | NULL |
+|  106 | khushal | alwar   | NULL |
+|  106 | rajat   | ajmer   | NULL |
++------+---------+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> update student set age=25 where sid in (101, 106);
+Query OK, 3 rows affected (0.012 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+---------+------+
+| sid  | name    | address | age  |
++------+---------+---------+------+
+|  101 | Harsh   | jaipur  |   25 |
+|  102 | ram     | jaipur  | NULL |
+|  103 | aman    | jaipur  | NULL |
+|  104 | rahul   | alwar   | NULL |
+|  105 | khushal | jaipur  | NULL |
+|  106 | khushal | alwar   |   25 |
+|  106 | rajat   | ajmer   |   25 |
++------+---------+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> alter table student drop column address;
+Query OK, 0 rows affected (0.029 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+------+
+| sid  | name    | age  |
++------+---------+------+
+|  101 | Harsh   |   25 |
+|  102 | ram     | NULL |
+|  103 | aman    | NULL |
+|  104 | rahul   | NULL |
+|  105 | khushal | NULL |
+|  106 | khushal |   25 |
+|  106 | rajat   |   25 |
++------+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> update student set sid=107 where name='rajat';
+Query OK, 1 row affected (0.012 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student;
++------+---------+------+
+| sid  | name    | age  |
++------+---------+------+
+|  101 | Harsh   |   25 |
+|  102 | ram     | NULL |
+|  103 | aman    | NULL |
+|  104 | rahul   | NULL |
+|  105 | khushal | NULL |
+|  106 | khushal |   25 |
+|  107 | rajat   |   25 |
++------+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> alter table student add primary key(sid);
+Query OK, 0 rows affected (0.064 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int(10)      | NO   | PRI | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| age   | int(5)       | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.035 sec)
+
+MariaDB [datascience_feb]> alter table student drop primary key;
+Query OK, 7 rows affected (0.067 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| sid   | int(10)      | NO   |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
+| age   | int(5)       | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.028 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> alter table student modify name char(100);
+Query OK, 7 rows affected (0.057 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> desc student;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| sid   | int(10)   | NO   |     | NULL    |       |
+| name  | char(100) | YES  |     | NULL    |       |
+| age   | int(5)    | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+3 rows in set (0.019 sec)
+
+MariaDB [datascience_feb]>
