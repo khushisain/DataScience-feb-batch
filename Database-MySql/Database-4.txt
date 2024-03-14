@@ -1,0 +1,932 @@
+
+Setting environment for using XAMPP for Windows.
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 18
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| grras_official     |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| fullstack_trainers        |
+| jaipur_emp                |
+| new_student               |
+| student_1                 |
+| trainers                  |
++---------------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.010 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> desc fees;
++----------+--------+------+-----+---------+-------+
+| Field    | Type   | Null | Key | Default | Extra |
++----------+--------+------+-----+---------+-------+
+| fid      | int(5) | NO   | PRI | NULL    |       |
+| sid      | int(5) | YES  | MUL | NULL    |       |
+| fees     | double | YES  |     | NULL    |       |
+| discount | double | YES  |     | NULL    |       |
+| paid     | double | YES  |     | NULL    |       |
++----------+--------+------+-----+---------+-------+
+5 rows in set (0.020 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> create table address(aid int(5) primary key, fid int(5), city varchar(100), state varchar(100), foreign key
+(fid) references fees(fid));
+Query OK, 0 rows affected (0.046 sec)
+
+MariaDB [datascience_feb]> desc address;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| aid   | int(5)       | NO   | PRI | NULL    |       |
+| fid   | int(5)       | YES  | MUL | NULL    |       |
+| city  | varchar(100) | YES  |     | NULL    |       |
+| state | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.025 sec)
+
+MariaDB [datascience_feb]> insert into address values(101, 1, 'jaipur', 'raj'), (102, 2, 'jaipur', 'raj');
+Query OK, 2 rows affected (0.004 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from address;
++-----+------+--------+-------+
+| aid | fid  | city   | state |
++-----+------+--------+-------+
+| 101 |    1 | jaipur | raj   |
+| 102 |    2 | jaipur | raj   |
++-----+------+--------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> insert into address values(103, 3, 'delhi', 'delhi');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from address;
++-----+------+--------+-------+
+| aid | fid  | city   | state |
++-----+------+--------+-------+
+| 101 |    1 | jaipur | raj   |
+| 102 |    2 | jaipur | raj   |
+| 103 |    3 | delhi  | delhi |
++-----+------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select fid from address where city='jaipur';
++------+
+| fid  |
++------+
+|    1 |
+|    2 |
++------+
+2 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select paid from fees where fid in (select fid from address where city='jaipur');
++-------+
+| paid  |
++-------+
+|  9000 |
+| 15000 |
++-------+
+2 rows in set (0.003 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from address;
++-----+------+--------+-------+
+| aid | fid  | city   | state |
++-----+------+--------+-------+
+| 101 |    1 | jaipur | raj   |
+| 102 |    2 | jaipur | raj   |
+| 103 |    3 | delhi  | delhi |
++-----+------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sid from fees where fid in (select fid from address where city='jaipur');
++------+
+| sid  |
++------+
+|  101 |
+|  102 |
++------+
+2 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select name from student where sid in (select sid from fees where fid in (select fid from address where cit
+y='jaipur'));
+ERROR 1146 (42S02): Table 'datascience_feb.student' doesn't exist
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select name from student_1 where sid in (select sid from fees where fid in (selectfid from address where c
+ity='jaipur'));
++-------+
+| name  |
++-------+
+| Harsh |
+| ram   |
++-------+
+2 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> desc student_1;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| sid   | int(10)   | NO   | PRI | NULL    |       |
+| name  | char(100) | YES  |     | NULL    |       |
+| age   | int(5)    | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+3 rows in set (0.020 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> -- join
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- inner join
+MariaDB [datascience_feb]> -- left join
+MariaDB [datascience_feb]> -- right join
+MariaDB [datascience_feb]> -- cross join
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1 inner join fees on student_1.sid=fees.sid;
++-----+-------+------+-----+------+-------+----------+-------+
+| sid | name  | age  | fid | sid  | fees  | discount | paid  |
++-----+-------+------+-----+------+-------+----------+-------+
+| 101 | Harsh |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+| 102 | ram   | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 103 | aman  | NULL |   3 |  103 | 15000 |        0 |  6000 |
++-----+-------+------+-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select sid, name, age, fees, paid from student_1 inner join fees on stu
+dent_1.sid=fees.sid;
+ERROR 1052 (23000): Column 'sid' in field list is ambiguous
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student_1 inner join fees on student_1.sid=fees.sid;
++-----+-------+------+-----+------+-------+----------+-------+
+| sid | name  | age  | fid | sid  | fees  | discount | paid  |
++-----+-------+------+-----+------+-------+----------+-------+
+| 101 | Harsh |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+| 102 | ram   | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 103 | aman  | NULL |   3 |  103 | 15000 |        0 |  6000 |
++-----+-------+------+-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select name, age, fees from student_1 inner join fees on student_1.sid=
+fees.sid;
++-------+------+-------+
+| name  | age  | fees  |
++-------+------+-------+
+| Harsh |   25 | 25000 |
+| ram   | NULL | 30000 |
+| aman  | NULL | 15000 |
++-------+------+-------+
+3 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select sid, name, age, fees from student_1 inner join fees on student_1
+.sid=fees.sid;
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>                                                                              ees.si
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1 left join fees on student_1.sid=fees.sid;
++-----+---------+------+------+------+-------+----------+-------+
+| sid | name    | age  | fid  | sid  | fees  | discount | paid  |
++-----+---------+------+------+------+-------+----------+-------+
+| 101 | Harsh   |   25 |    1 |  101 | 25000 |     1000 |  9000 |
+| 102 | ram     | NULL |    2 |  102 | 30000 |     2000 | 15000 |
+| 103 | aman    | NULL |    3 |  103 | 15000 |        0 |  6000 |
+| 104 | rahul   | NULL | NULL | NULL |  NULL |     NULL |  NULL |
+| 105 | khushal | NULL | NULL | NULL |  NULL |     NULL |  NULL |
+| 106 | khushal |   25 | NULL | NULL |  NULL |     NULL |  NULL |
+| 107 | rajat   |   25 | NULL | NULL |  NULL |     NULL |  NULL |
++-----+---------+------+------+------+-------+----------+-------+
+7 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> select * from fees left join student_1 on student_1.sid=fees.sid;
++-----+------+-------+----------+-------+------+-------+------+
+| fid | sid  | fees  | discount | paid  | sid  | name  | age  |
++-----+------+-------+----------+-------+------+-------+------+
+|   1 |  101 | 25000 |     1000 |  9000 |  101 | Harsh |   25 |
+|   2 |  102 | 30000 |     2000 | 15000 |  102 | ram   | NULL |
+|   3 |  103 | 15000 |        0 |  6000 |  103 | aman  | NULL |
++-----+------+-------+----------+-------+------+-------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1 right join fees on student_1.sid=fees.sid;
++------+-------+------+-----+------+-------+----------+-------+
+| sid  | name  | age  | fid | sid  | fees  | discount | paid  |
++------+-------+------+-----+------+-------+----------+-------+
+|  101 | Harsh |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+|  102 | ram   | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+|  103 | aman  | NULL |   3 |  103 | 15000 |        0 |  6000 |
++------+-------+------+-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees right join student_1 on student_1.sid=fees.sid;
++------+------+-------+----------+-------+-----+---------+------+
+| fid  | sid  | fees  | discount | paid  | sid | name    | age  |
++------+------+-------+----------+-------+-----+---------+------+
+|    1 |  101 | 25000 |     1000 |  9000 | 101 | Harsh   |   25 |
+|    2 |  102 | 30000 |     2000 | 15000 | 102 | ram     | NULL |
+|    3 |  103 | 15000 |        0 |  6000 | 103 | aman    | NULL |
+| NULL | NULL |  NULL |     NULL |  NULL | 104 | rahul   | NULL |
+| NULL | NULL |  NULL |     NULL |  NULL | 105 | khushal | NULL |
+| NULL | NULL |  NULL |     NULL |  NULL | 106 | khushal |   25 |
+| NULL | NULL |  NULL |     NULL |  NULL | 107 | rajat   |   25 |
++------+------+-------+----------+-------+-----+---------+------+
+7 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> -- cross join
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from address;
++-----+------+--------+-------+
+| aid | fid  | city   | state |
++-----+------+--------+-------+
+| 101 |    1 | jaipur | raj   |
+| 102 |    2 | jaipur | raj   |
+| 103 |    3 | delhi  | delhi |
++-----+------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from fees;
++-----+------+-------+----------+-------+
+| fid | sid  | fees  | discount | paid  |
++-----+------+-------+----------+-------+
+|   1 |  101 | 25000 |     1000 |  9000 |
+|   2 |  102 | 30000 |     2000 | 15000 |
+|   3 |  103 | 15000 |        0 |  6000 |
++-----+------+-------+----------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1 cross join fees;
++-----+---------+------+-----+------+-------+----------+-------+
+| sid | name    | age  | fid | sid  | fees  | discount | paid  |
++-----+---------+------+-----+------+-------+----------+-------+
+| 101 | Harsh   |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+| 101 | Harsh   |   25 |   2 |  102 | 30000 |     2000 | 15000 |
+| 101 | Harsh   |   25 |   3 |  103 | 15000 |        0 |  6000 |
+| 102 | ram     | NULL |   1 |  101 | 25000 |     1000 |  9000 |
+| 102 | ram     | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 102 | ram     | NULL |   3 |  103 | 15000 |        0 |  6000 |
+| 103 | aman    | NULL |   1 |  101 | 25000 |     1000 |  9000 |
+| 103 | aman    | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 103 | aman    | NULL |   3 |  103 | 15000 |        0 |  6000 |
+| 104 | rahul   | NULL |   1 |  101 | 25000 |     1000 |  9000 |
+| 104 | rahul   | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 104 | rahul   | NULL |   3 |  103 | 15000 |        0 |  6000 |
+| 105 | khushal | NULL |   1 |  101 | 25000 |     1000 |  9000 |
+| 105 | khushal | NULL |   2 |  102 | 30000 |     2000 | 15000 |
+| 105 | khushal | NULL |   3 |  103 | 15000 |        0 |  6000 |
+| 106 | khushal |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+| 106 | khushal |   25 |   2 |  102 | 30000 |     2000 | 15000 |
+| 106 | khushal |   25 |   3 |  103 | 15000 |        0 |  6000 |
+| 107 | rajat   |   25 |   1 |  101 | 25000 |     1000 |  9000 |
+| 107 | rajat   |   25 |   2 |  102 | 30000 |     2000 | 15000 |
+| 107 | rajat   |   25 |   3 |  103 | 15000 |        0 |  6000 |
++-----+---------+------+-----+------+-------+----------+-------+
+21 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- user creation
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| grras_official     |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> use mysql;
+Database changed
+MariaDB [mysql]> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| column_stats              |
+| columns_priv              |
+| db                        |
+| event                     |
+| func                      |
+| general_log               |
+| global_priv               |
+| gtid_slave_pos            |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| index_stats               |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| roles_mapping             |
+| servers                   |
+| slow_log                  |
+| table_stats               |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| transaction_registry      |
+| user                      |
++---------------------------+
+31 rows in set (0.002 sec)
+
+MariaDB [mysql]> select * from user;
++-----------+----------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+| Host      | User           | Password                                  | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | Delete_history_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin                | authentication_string                     | password_expired | is_role | default_role | max_statement_time |
++-----------+----------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+| localhost | root           |                                           | Y           | Y           | Y     | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y     | Y               | Y          | Y          | Y            | Y          | Y                     | Y          | Y            | Y               | Y                | Y                | Y              | Y          | Y
+   | Y                | Y          | Y            | Y                      | Y                   |          |           |             |              |             0 |           0 |               0 |                    0 |
+           |                                           | N                | N       |              | 0.000000 |
+| localhost | aman           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N           | N           | N     | N           | N           | N         | N           | N             | N            | N         | N     | N               | N          | N          | N            | N          | N                     | N          | N            | N               | N                | N                | N              | N          | N
+   | N                | N          | N            | N                      | N                   |          |           |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N                | N       |   |           0.000000 |
+| 127.0.0.1 | root           |                                           | Y           | Y           | Y     | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y     | Y               | Y          | Y          | Y            | Y          | Y                     | Y          | Y            | Y               | Y                | Y                | Y              | Y          | Y
+   | Y                | Y          | Y            | Y                      | Y                   |          |           |             |              |             0 |           0 |               0 |                    0 |
+           |                                           | N                | N       |              | 0.000000 |
+| ::1       | root           |                                           | Y           | Y           | Y     | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y     | Y               | Y          | Y          | Y            | Y          | Y                     | Y          | Y            | Y               | Y                | Y                | Y              | Y          | Y
+   | Y                | Y          | Y            | Y                      | Y                   |          |           |             |              |             0 |           0 |               0 |                    0 |
+           |                                           | N                | N       |              | 0.000000 |
+| localhost | pma            |                                           | N           | N           | N     | N           | N           | N         | N           | N             | N            | N         | N     | N               | N          | N          | N            | N          | N                     | N          | N            | N               | N                | N                | N              | N          | N
+   | N                | N          | N            | N                      | N                   |          |           |             |              |             0 |           0 |               0 |                    0 | mysql_native_password |                                           | N                | N       |   |           0.000000 |
+| %         | anil@localhost | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N           | N           | N     | N           | N           | N         | N           | N             | N            | N         | N     | N               | N          | N          | N            | N          | N                     | N          | N            | N               | N                | N                | N              | N          | N
+   | N                | N          | N            | N                      | N                   |          |           |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N                | N       |   |           0.000000 |
+| localhost | nitin          | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N           | N           | N     | N           | N           | N         | N           | N             | N            | N         | N     | N               | N          | N          | N            | N          | N                     | N          | N            | N               | N                | N                | N              | N          | N
+   | N                | N          | N            | N                      | N                   |          |           |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N                | N       |   |           0.000000 |
+| localhost | deep           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N           | N           | N     | N           | N           | N         | N           | N             | N            | N         | N     | N               | N          | N          | N            | N          | N                     | N          | N            | N               | N                | N                | N              | N          | N
+   | N                | N          | N            | N                      | N                   |          |           |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *00A51F3F48415C7D4E8908980D443C29C69B60C9 | N                | N       |   |           0.000000 |
++-----------+----------------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+---------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+---------+--------------+--------------------+
+8 rows in set (0.005 sec)
+
+MariaDB [mysql]> select host, user, password from user;
++-----------+----------------+-------------------------------------------+
+| Host      | User           | Password                                  |
++-----------+----------------+-------------------------------------------+
+| localhost | root           |                                           |
+| localhost | aman           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| 127.0.0.1 | root           |                                           |
+| ::1       | root           |                                           |
+| localhost | pma            |                                           |
+| %         | anil@localhost | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| localhost | nitin          | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| localhost | deep           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
++-----------+----------------+-------------------------------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [mysql]> -- create user 'user_name'@'hostname' identified by 'password';
+MariaDB [mysql]>
+MariaDB [mysql]>
+MariaDB [mysql]>
+MariaDB [mysql]>
+MariaDB [mysql]> create user 'khushal'@'localhost' indentified by '12345';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'indentified by '12345'' at line 1
+MariaDB [mysql]>
+MariaDB [mysql]>
+MariaDB [mysql]>
+MariaDB [mysql]> create user 'khushal'@'localhost' identified by '12345';
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [mysql]> select host, user, password from user;
++-----------+----------------+-------------------------------------------+
+| Host      | User           | Password                                  |
++-----------+----------------+-------------------------------------------+
+| localhost | root           |                                           |
+| localhost | aman           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| 127.0.0.1 | root           |                                           |
+| ::1       | root           |                                           |
+| localhost | pma            |                                           |
+| %         | anil@localhost | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| localhost | nitin          | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| localhost | deep           | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
+| localhost | khushal        | *00A51F3F48415C7D4E8908980D443C29C69B60C9 |
++-----------+----------------+-------------------------------------------+
+9 rows in set (0.001 sec)
+
+MariaDB [mysql]>
+MariaDB [mysql]> Bye
+
+user@DEEP c:\xampp
+# mysql -u khushal -p
+Enter password: *****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 19
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [(none)]> Bye
+
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 20
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> -- grant
+MariaDB [(none)]> -- revoke
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]> grant all privileges on datascience_feb.* to 'khushal'@'localhost';
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [(none)]> Bye
+
+user@DEEP c:\xampp
+# mysql -u khushal -p
+Enter password: *****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 21
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| datascience_feb    |
+| information_schema |
++--------------------+
+2 rows in set (0.002 sec)
+
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| address                   |
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| fullstack_trainers        |
+| jaipur_emp                |
+| new_student               |
+| student_1                 |
+| trainers                  |
++---------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
++------+-----------+----------------+
+11 rows in set (0.008 sec)
+
+MariaDB [datascience_feb]> insert into trainers values(112, 'khushal', 'database');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
++------+-----------+----------------+
+12 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> Bye
+
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 22
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| address                   |
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| fullstack_trainers        |
+| jaipur_emp                |
+| new_student               |
+| student_1                 |
+| trainers                  |
++---------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
++------+-----------+----------------+
+12 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- revoke
+MariaDB [datascience_feb]> revoke all privileges on datascience_feb.* from 'khushal'@'localhost';
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [datascience_feb]> Bye
+
+user@DEEP c:\xampp
+# mysql -u khushal -p
+Enter password: *****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 23
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [(none)]> -- insert, update , delete
