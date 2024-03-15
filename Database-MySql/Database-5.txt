@@ -1,0 +1,285 @@
+
+Setting environment for using XAMPP for Windows.
+user@DEEP c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| grras_official     |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.035 sec)
+
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]> -- group by
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]>
+MariaDB [(none)]> use datascience_feb;
+Database changed
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| address                   |
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| fullstack_trainers        |
+| jaipur_emp                |
+| new_student               |
+| student_1                 |
+| trainers                  |
++---------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from student_1;
++-----+---------+------+
+| sid | name    | age  |
++-----+---------+------+
+| 101 | Harsh   |   25 |
+| 102 | ram     | NULL |
+| 103 | aman    | NULL |
+| 104 | rahul   | NULL |
+| 105 | khushal | NULL |
+| 106 | khushal |   25 |
+| 107 | rajat   |   25 |
++-----+---------+------+
+7 rows in set (0.110 sec)
+
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
++------+-----------+----------------+
+12 rows in set (0.004 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from trainers group by course;
++------+---------+----------------+
+| t_id | name    | course         |
++------+---------+----------------+
+|  104 | sachin  | Bigdata        |
+|  102 | ravi    | data analytics |
+|  112 | khushal | database       |
+|  105 | deep    | datascience    |
+|  107 | swastik | fullstack      |
+|  103 | simran  | ML             |
+|  101 | gaurav  | python         |
++------+---------+----------------+
+7 rows in set (0.005 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select course from trainers group by course;
++----------------+
+| course         |
++----------------+
+| Bigdata        |
+| data analytics |
+| database       |
+| datascience    |
+| fullstack      |
+| ML             |
+| python         |
++----------------+
+7 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select course, count(*) from trainers group by course;
++----------------+----------+
+| course         | count(*) |
++----------------+----------+
+| Bigdata        |        2 |
+| data analytics |        1 |
+| database       |        1 |
+| datascience    |        2 |
+| fullstack      |        4 |
+| ML             |        1 |
+| python         |        1 |
++----------------+----------+
+7 rows in set (0.003 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select course, count(*) from trainers group by course where count(*) >= 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where count(*) >= 2' at line 1
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select course, count(*) from trainers group by course having count(*) >= 2;
++-------------+----------+
+| course      | count(*) |
++-------------+----------+
+| Bigdata     |        2 |
+| datascience |        2 |
+| fullstack   |        4 |
++-------------+----------+
+3 rows in set (0.004 sec)
+
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> -- python database connectivity
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| arya_ds            |
+| bank_application   |
+| data               |
+| datascience_feb    |
+| grras_official     |
+| information_schema |
+| mysql              |
+| new_db             |
+| performance_schema |
+| phpmyadmin         |
+| python8am          |
+| test               |
+| world              |
++--------------------+
+13 rows in set (0.002 sec)
+
+MariaDB [datascience_feb]> show tables;
++---------------------------+
+| Tables_in_datascience_feb |
++---------------------------+
+| address                   |
+| city                      |
+| employee                  |
+| fees                      |
+| filter_student            |
+| fullstack_trainers        |
+| jaipur_emp                |
+| new_student               |
+| student_1                 |
+| trainers                  |
++---------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> desc trainers;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| t_id   | int(5)       | NO   | PRI | NULL    |       |
+| name   | varchar(100) | YES  |     | NULL    |       |
+| course | varchar(100) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.018 sec)
+
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
++------+-----------+----------------+
+12 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
++------+-----------+----------------+
+12 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]> -- auto commit
+MariaDB [datascience_feb]>
+MariaDB [datascience_feb]> select * from trainers;
++------+-----------+----------------+
+| t_id | name      | course         |
++------+-----------+----------------+
+|  101 | gaurav    | python         |
+|  102 | ravi      | data analytics |
+|  103 | simran    | ML             |
+|  104 | sachin    | Bigdata        |
+|  105 | deep      | datascience    |
+|  106 | sachin    | datascience    |
+|  107 | swastik   | fullstack      |
+|  108 | devansh   | fullstack      |
+|  109 | shriyansh | fullstack      |
+|  110 | aman      | bigdata        |
+|  111 | ram       | fullstack      |
+|  112 | khushal   | database       |
+|  113 | gaurav    | python         |
++------+-----------+----------------+
+13 rows in set (0.001 sec)
+
+MariaDB [datascience_feb]>
